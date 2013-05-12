@@ -4,12 +4,12 @@
     <a th:href="@{*{url}}">
     <img th:if="*{media['primary']}" th:src="@{*{media['primary'].url}}" alt="Sauce Image" />
     <div class="price" th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
-        <div blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
-        <div blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>
+        <div class="label label-info" blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
+        <div class="label label-info" blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>
     </div>
     <div class="price" th:unless="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
-        <div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
-        <div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
+        <div class="label label-info"  blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
+        <div class="label label-info"  blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
     </div>
     </a>
 </div>
@@ -30,7 +30,7 @@
             <input type="hidden" name="productId" th:value="*{id}" />
             <input type="hidden" name="quantity" value="1" />
             <input type="hidden" name="hasProductOptions" th:value="*{!#lists.isEmpty(productOptions)}" />
-            <input type="submit" class="addToCart" th:value="#{product.buyNow}"/>
+            <input type="submit" class="btn btn-large btn-success" th:value="#{product.buyNow}"/>
         </blc:form>
     </div>
 
@@ -39,5 +39,5 @@
 <div style="display: none;" th:id="*{'productOptions' + id}" class="product-options modal">
     <h3 th:text="*{name}"></h3>
     <div class="product-options" th:substituteby="catalog/partials/productOptions"/>
-    <input type="button" class="addToCart" th:value="#{product.buyNow}" />
+    <input type="button" class="btn btn-large btn-success" th:value="#{product.buyNow}" />
 </div>

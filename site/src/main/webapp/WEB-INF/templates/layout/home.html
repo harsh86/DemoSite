@@ -2,39 +2,56 @@
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html style="" class=" js no-flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en">
+<!--<![endif]-->
 
 <blc:head pageTitle="Broadleaf Demo - Heat Clinic" />
 
 <body>
-    <div id="notification_bar"></div>
-    <header th:substituteby="layout/partials/header" />
-    
-    <div id="content" class="width_setter group" role="main">
-    
-        <nav th:substituteby="layout/partials/nav" />
-            
-        <blc:content contentType="Homepage Banner Ad" />       
-        <div id="banners" th:if="${contentItem}">
-            <a th:href="@{${contentItem['targetUrl']}}"><img th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>        
-        </div>
-        
-        <blc:content contentType="Homepage Middle Promo Snippet" /> 
-        
-        <a th:href="@{/register}" th:if="${contentItem}" style="text-decoration:none">
-            <div id="home_feature" th:utext="${contentItem['htmlContent']}"></div>
-        </a>
+	<!--     <div id="notification_bar"></div> -->
+	<div class="container">
+		<header th:substituteby="layout/partials/header" />
 
-        
-        <blc:content contentType="Homepage Featured Products Title" />    
-        <div th:if="${contentItem}" class="title_bar" th:text="${contentItem['messageText']}"></div>
-        
-        <ul id="products" class="group">
-            <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-        </ul>
-    </div>
-    
-    <footer th:substituteby="layout/partials/footer" />
-    
+		<div id="content" class="width_setter group" role="main">
+
+			<!--         <nav th:substituteby="layout/partials/nav" /> -->
+
+
+			<div class="jumbotron">
+				<blc:content contentType="Homepage Banner Ad" />
+				<div id="banners" th:if="${contentItem}">
+					<a th:href="@{${contentItem['targetUrl']}}"><img
+						th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>
+				</div>
+
+				<blc:content contentType="Homepage Middle Promo Snippet" />
+
+				<a th:href="@{/register}" th:if="${contentItem}"
+					style="text-decoration: none">
+					<div id="home_feature" th:utext="${contentItem['htmlContent']}"></div>
+				</a>
+
+
+				<blc:content contentType="Homepage Featured Products Title" />
+				<div th:if="${contentItem}" class="title_bar"
+					th:text="${contentItem['messageText']}"></div>
+			</div>
+
+
+
+
+<div class="row-fluid">
+
+<div th:each="product : ${products}" th:object="${product}"
+					th:include="catalog/partials/productListItem"
+					class="span3"></div>
+</div>
+<!-- 			<ul id="products" class="group"> -->
+<!-- 			</ul> -->
+		</div>
+
+		<footer th:substituteby="layout/partials/footer" />
+	</div>
 </body>
 </html>
