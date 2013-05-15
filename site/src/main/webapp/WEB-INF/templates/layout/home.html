@@ -10,8 +10,10 @@
 
 <body>
 	<!--     <div id="notification_bar"></div> -->
+	<header th:substituteby="layout/partials/header" />
 	<div class="container">
-		<header th:substituteby="layout/partials/header" />
+		
+
 
 		<div id="content" class="width_setter group" role="main">
 
@@ -20,7 +22,7 @@
 
 			<div class="jumbotron">
 				<blc:content contentType="Homepage Banner Ad" />
-				<div id="banners" th:if="${contentItem}">
+				<div id="banners" th:if="${contentItem}" class="pager">
 					<a th:href="@{${contentItem['targetUrl']}}"><img
 						th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>
 				</div>
@@ -51,7 +53,8 @@
 <!-- 			</ul> -->
 		</div>
 
-		<footer th:substituteby="layout/partials/footer" />
+		
 	</div>
+	<footer th:substituteby="layout/partials/footer" />
 </body>
 </html>

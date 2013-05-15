@@ -1,4 +1,4 @@
-<!-- <header> -->
+<header>
 <!--     <nav> -->
 <!--     <div class="navbar navbar-inverse navbar-fixed-top"> -->
 <!--         <div class="navbar-inner"> -->
@@ -11,8 +11,39 @@
 <!--                 <a class="brand" href="/">Project name</a> -->
 <!--                 <div class="nav-collapse collapse"> -->
 <div class="masthead">
-	<h3 class="muted">Project name</h3>
-	<div class="navbar">
+<!-- 	<div id="logo"><h1 style="background:url('../img/the-heat-clinic-logo-internal.png')"><a href="/heatclinic/;jsessionid=8FA8AE734C711D9D898B32FBF59795A7">The Heat Clinic Home</a></h1></div> -->
+	<div class="navbar-inner navbar-fixed globalheader">
+		    <div th:if="${customer.anonymous}"  th:remove="tag">
+				<a class="account" th:href="@{/login}">Login</a> 
+				&nbsp;|&nbsp; 
+				<a class="account" th:href="@{/register}">Register</a> 
+				&nbsp;|&nbsp; 
+			</div>
+		    <div th:unless="${customer.anonymous}" th:remove="tag">
+				<span>Welcome, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>  
+				&nbsp;|&nbsp; 
+				<a th:href="@{/logout}">Logout</a> 
+				&nbsp;|&nbsp; 
+			</div>
+			<a id="cartLink" class="fancycart" th:href="@{/cart}">
+				<img th:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
+				&nbsp; 
+				<span class="headerCartItemsCount" th:text="${cart.itemCount}" />
+				<span class="headerCartItemsCountWord" th:text="${cart.itemCount == 1 ? ' item' : ' items'}" />
+			</a>
+			<div id="search">
+					<blc:form th:action="@{/search}" method="GET"
+						class="navbar-form pull-right">
+						<input type="search" class="search" name="q"
+							th:value="${originalQuery}" />
+						<input type="submit" id="search_button" value="go" />
+					</blc:form>
+				</div>
+		</div>
+		
+</div>
+
+<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container">
 				<blc:categories resultVar="navCategories"
@@ -48,18 +79,9 @@
                         <input class="span2" type="text" placeholder="Email"/>
                         <input class="span2" type="password" placeholder="Password"/>
                         <button type="submit" class="btn">Sign in</button>-->
-				<div id="search">
-					<blc:form th:action="@{/search}" method="GET"
-						class="navbar-form pull-right">
-						<input type="search" class="search" name="q"
-							th:value="${originalQuery}" />
-						<input type="submit" id="search_button" value="go" />
-					</blc:form>
-				</div>
 			</div>
 		</div>
 	</div>
-</div>
 <!--</form>-->
 <!--                 </div>/.nav-collapse -->
 <!--             </div> -->
@@ -112,4 +134,4 @@
         </div>
     </div>
     -->
-<!-- </header> -->
+</header>
